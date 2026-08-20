@@ -1,20 +1,21 @@
-def reorganizar(n: list, target, position=0):
+def reorganiza(S, inicio, fim, k):
+    if inicio >= fim:
+        return
 
-    if target in n:
-        return n
+    if S[inicio] <= k:
+        reorganiza(S, inicio + 1, fim, k)
 
-    for i in range(len(n)):
-        if n[i] == target:
-            position = i
+    elif S[fim] > k:
+        reorganiza(S, inicio, fim - 1, k)
 
-    for k in range(len(n)):
-        if n[k] > target:
-            flag = n[k]
-            n[position+1] = n[k]
-            n[k] = flag
-            return reorganizar(n, target, position)
-        elif n[k] < target:
-            flag = n[k]
-            n[position-1] = n[k]
-            n[k] = flag
-            return reorganizar(n, target, position)
+    else:
+        S[inicio], S[fim] = S[fim], S[inicio]
+        reorganiza(S, inicio + 1, fim - 1, k)
+
+
+S = [8, 3, 7, 2, 9, 1, 5]
+k = 5
+
+reorganiza(S, 0, len(S) - 1, k)
+
+print(S)
