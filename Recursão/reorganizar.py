@@ -1,21 +1,32 @@
-def reorganiza(S, inicio, fim, k):
-    if inicio >= fim:
-        return
+def reorganiza(S, k):
+    if len(S) == 1:
+        return S
 
-    if S[inicio] <= k:
-        reorganiza(S, inicio + 1, fim, k)
+    a = S[0]
+    b = S[1:]
 
-    elif S[fim] > k:
-        reorganiza(S, inicio, fim - 1, k)
-
+    if a < k:
+        return [a] + reorganiza(b, k)
     else:
-        S[inicio], S[fim] = S[fim], S[inicio]
-        reorganiza(S, inicio + 1, fim - 1, k)
+        return reorganiza(b, k) + [a]
 
 
-S = [8, 3, 7, 2, 9, 1, 5]
+n = [9, 4, 6, 7, 8, 2, 3]
 k = 5
+print(reorganiza(n, k))
 
-reorganiza(S, 0, len(S) - 1, k)
+"""Usando pop,insert e append"""
 
-print(S)
+
+def muda(n, k):
+    if len(n) == 1:
+        return n
+
+    a = n.pop()
+
+    if a < k:
+        n.insert(0, a)
+    else:
+        n.append(a)
+
+    return muda(n, k)
