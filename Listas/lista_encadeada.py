@@ -270,6 +270,75 @@ class DoublyLL:
         print("None")
 
 
+class CircularList:
+    def __init__(self):
+        self.head = None
+
+    def inserir_fim(self, data):
+        newNode = Node(data)
+
+        if self.head is None:
+            self.head = newNode
+            newNode.proximo = self.head
+        else:
+            currentNode = self.head
+            while currentNode.proximo != self.head:
+                currentNode = currentNode.proximo
+            currentNode.proximo = newNode
+            newNode.proximo = self.head
+
+    def inserir_meio(self, data, pos):
+        newNode = Node(data)
+
+        if self.head is None:
+            self.head = newNode
+            newNode.proximo = self.head
+        else:
+            currentNode = self.head
+            count = 0
+            while count < pos:
+                currentNode = currentNode.proximo
+            newNode.proximo = currentNode.proximo
+            currentNode.proximo = newNode
+
+    def inserir_inicio(self, data):
+        newNode = Node(data)
+
+        if self.head is None:
+            self.head = newNode
+            newNode.proximo = self.head
+        else:
+            currentNode = self.head
+            while currentNode.proximo != self.head:
+                currentNode = currentNode.proximo
+            currentNode.proximo = newNode
+            newNode.proximo = self.head
+
+    def remover_inicio(self):
+        if self.head is None:
+            return
+        if self.head.proximo == self.head:
+            self.head = None
+        else:
+            currentNode = self.head
+            while currentNode.next != self.head:
+                currentNode = currentNode.proximo
+            currentNode.proximo = self.head.proximo
+            self.head = self.head.proximo
+
+    def search(self, key):
+        if self.head is None:
+            return False
+        currentNode = self.head
+        while True:
+            if currentNode.data == key:
+                return True
+            currentNode = currentNode.proximo
+            if currentNode == self.head:
+                break
+        return False
+
+
 def detectCycle(linkedList: LinkedList):
     fast = slow = linkedList.head
     while (fast != None and slow != None):
