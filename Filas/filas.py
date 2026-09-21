@@ -6,6 +6,7 @@ class QueueArray:
         self.capacity = capacity
         self.queue = [None] * capacity
         self.front = self.rear = -1
+        self.length = 0
 
     def isEmpty(self):
         return self.front == -1
@@ -21,6 +22,7 @@ class QueueArray:
         else:
             self.rear = (self.rear + 1) % self.capacity
         self.queue[self.rear] = data
+        self.length += 1
 
     def DeQueue(self):
         if self.isEmpty():
@@ -30,6 +32,7 @@ class QueueArray:
             self.front = self.rear = -1
         else:
             self.front = (self.front + 1) % self.capacity
+        self.length -= 1
         return data
 
 
