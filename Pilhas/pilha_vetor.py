@@ -6,18 +6,45 @@ class PilhaVetor:
         self.top = 0
         self.Capacity = Capacity
         self.A = [None] * Capacity
+        self.A[0] = 0
 
     def isEmpty(self):
-        if self.top == -1:
+        if self.A[0] == 0:
             return True
         else:
             return False
 
     def push(self, valor):
+        if self.isFull():
+            return "Esta Cheia"
+
+        self.A[0] += 1
+        self.A[self.A[0]] = valor
+
+    def pop(self):
         if self.isEmpty():
-            self.top += 1
-            self.A[self.top] = valor
+            return "Já esta vazia"
+
+        temp = self.A[self.A[0]]
+        self.A[self.A[0]] = None
+        self.A[0] -= 1
+
+        return temp
+
+        return temp
+
+    def peek(self):
+        return self.A[self.A[0]]
+
+    def len(self):
+        return self.A[0]
+
+    def isFull(self):
+        if self.A[0] == self.Capacity - 1:
+            return True
         else:
-            self.top += 1
-            self.A[self.top] = valor
-            self.A[0] = self.top
+            return False
+
+    def empty(self):
+        while not self.isEmpty():
+            self.pop()
