@@ -9,3 +9,12 @@ def esvaziando_pilha(pilha: Stack):
         pilha.pop()
 
     return "Pilha esvaziada"
+
+
+def Empty(pilha: Stack):
+    if pilha.isEmpTy():
+        return True
+
+    pilha.pop()
+
+    Empty(pilha)

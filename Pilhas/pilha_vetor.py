@@ -31,8 +31,6 @@ class PilhaVetor:
 
         return temp
 
-        return temp
-
     def peek(self):
         return self.A[self.A[0]]
 
