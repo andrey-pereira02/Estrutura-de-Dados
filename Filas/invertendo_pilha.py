@@ -37,3 +37,24 @@ def invertN(fila: QueueArray, n: int):
 
     for j in range(fila.length - n):
         fila.EnQueue(fila.DeQueue())
+
+
+def invertendoSemPilha(fila: QueueArray):
+    filaAUX = QueueArray()
+    count = 0
+
+    while not fila.isEmpty():
+
+        tamanho = 0
+
+        for i in fila:
+            tamanho += 1
+
+        for j in range(tamanho - 1):
+            fila.EnQueue(fila.DeQueue())
+
+        filaAUX.EnQueue(fila.DeQueue())
+        count += 1
+
+    for i in range(count):
+        fila.EnQueue(filaAUX.DeQueue())
