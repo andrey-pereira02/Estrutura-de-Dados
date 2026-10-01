@@ -22,3 +22,25 @@ def dividindo(lista: LinkedList):
     current.proximo = None
 
     return lista, lista2
+
+
+def dividinoFastSlow(lista: LinkedList):
+    slow = lista.head
+    fast = lista.head
+
+    while fast != None:
+        fast = fast.proximo
+
+        if fast is not None:
+            fast = fast.proximo
+
+        if fast is not None:
+            fast = fast.proximo
+
+        if fast is not None:
+            slow = slow.proximo
+
+    lista2 = slow.proximo
+    slow.proximo = None
+
+    return lista, lista2
