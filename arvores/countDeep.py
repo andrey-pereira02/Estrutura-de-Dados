@@ -6,7 +6,6 @@ def coutDeep(root):
         return
     fila = QueueArray()
     fila.EnQueue(root)
-    count = 1
     deep = 0
 
     while not fila.isEmpty():
