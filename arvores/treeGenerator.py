@@ -48,3 +48,26 @@ def treeGenerator(root, qtn):
 """
 Ta meio certo, mas ela não vai sair balanceada
 """
+
+
+def buildRandomTree(seed, num):
+    root = Node(seed)
+    bt = BinTree(root)
+    i = 1
+    while i < num:
+        p = q = root
+        number = random.randint(num*40)
+        if number != p.data and q is not None:
+            p = q
+            if number < p.data:
+                q = p.left
+            else:
+                q = p.right
+        if number == p.data:
+            continue
+        elif number < p.data:
+            p.setLeft(number)
+        else:
+            p.setRight(number)
+        i += 1
+    return bt, root
